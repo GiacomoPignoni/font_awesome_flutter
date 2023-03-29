@@ -359,17 +359,17 @@ List<String> generateIconDefinitionClass(
       if(iconsMaps.containsKey(style) == false) {
         iconsMaps[style] = [
           '',
-          'static const List<IconData> ${style}List = ['
+          'static const Map<String, IconData> ${style}IconsMap = {'
         ];
       }
 
-
-      iconsMaps[style]?.add('${normalizeIconName(icon.name, style, icon.styles.length)},');
+      final iconName = normalizeIconName(icon.name, style, icon.styles.length);
+      iconsMaps[style]?.add('\'$iconName\': $iconName,');
     }
   }
 
   iconsMaps.forEach((key, value) {
-    value.add('];');
+    value.add('};');
     output.addAll(value);
   });
 
