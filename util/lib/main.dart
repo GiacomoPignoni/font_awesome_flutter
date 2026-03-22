@@ -390,13 +390,30 @@ List<String> generateIconDefinitionClass(
     'class FontAwesomeIcons {',
   ]);
 
+  final Map<String, List<String>> iconsMaps = {};
+
   for (var icon in metadata) {
     for (String style in icon.styles) {
       output.add(generateIconDocumentation(icon, style));
       output.add(generateIconDefinition(icon, style));
       output.add(generateIconAliases(icon, style));
+
+      if(iconsMaps.containsKey(style) == false) {
+        iconsMaps[style] = [
+          '',
+          'Map<String, FaIconData> ${style}IconsMap = {'
+        ];
+      }
+
+      final iconName = normalizeIconName(icon.name, style, icon.styles.length);
+      iconsMaps[style]?.add('\'$iconName\': $iconName,');
     }
   }
+
+  iconsMaps.forEach((key, value) {
+    value.add('};');
+    output.addAll(value);
+  });
 
   output.add('}');
   return output;
@@ -575,7 +592,9 @@ Future printVersionNotice(String repositoryName) async {
       ),
     );
   } finally {
-    tmpFile.delete();
+    if (await tmpFile.exists()) {
+      await tmpFile.delete();
+    }
   }
   // do not exit
   print('');
