@@ -28535,7 +28535,7 @@ class FontAwesomeIcons {
     ),
   );
 
-  Map<String, FaIconData> solidIconsMap = {
+  static const Map<String, FaIconData> solidIconsMap = {
     'zero': zero,
     'one': one,
     'two': two,
@@ -29960,7 +29960,7 @@ class FontAwesomeIcons {
     'z': z,
   };
 
-  Map<String, FaIconData> brandsIconsMap = {
+  static const Map<String, FaIconData> brandsIconsMap = {
     'fortyTwoGroup': fortyTwoGroup,
     'fiveHundredPx': fiveHundredPx,
     'accessibleIcon': accessibleIcon,
@@ -30513,7 +30513,7 @@ class FontAwesomeIcons {
     'zulip': zulip,
   };
 
-  Map<String, FaIconData> regularIconsMap = {
+  static const Map<String, FaIconData> regularIconsMap = {
     'addressBook': addressBook,
     'addressCard': addressCard,
     'alarmClock': alarmClock,

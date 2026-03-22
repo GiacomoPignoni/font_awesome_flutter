@@ -401,7 +401,7 @@ List<String> generateIconDefinitionClass(
       if(iconsMaps.containsKey(style) == false) {
         iconsMaps[style] = [
           '',
-          'Map<String, FaIconData> ${style}IconsMap = {'
+          'static const Map<String, FaIconData> ${style}IconsMap = {'
         ];
       }
 
